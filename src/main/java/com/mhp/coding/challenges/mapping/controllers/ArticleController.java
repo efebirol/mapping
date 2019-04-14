@@ -1,5 +1,6 @@
 package com.mhp.coding.challenges.mapping.controllers;
 
+import com.mhp.coding.challenges.mapping.mappers.ArticleMapper;
 import com.mhp.coding.challenges.mapping.models.dto.ArticleDto;
 import com.mhp.coding.challenges.mapping.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @Autowired
+    ArticleMapper mapper;
+
+    @Autowired
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
@@ -25,7 +29,8 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ArticleDto details(@PathVariable Long id) {
-        return articleService.articleForId(id);
+
+         return articleService.articleForId(id);
     }
 
     @PostMapping()

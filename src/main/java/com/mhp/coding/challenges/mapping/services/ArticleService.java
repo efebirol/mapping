@@ -17,6 +17,7 @@ public class ArticleService {
 
     private final ArticleMapper mapper;
 
+
     @Autowired
     public ArticleService(ArticleRepository repository, ArticleMapper mapper) {
         this.repository = repository;
@@ -31,8 +32,8 @@ public class ArticleService {
 
     public ArticleDto articleForId(Long id) {
         final Article article = repository.findBy(id);
-        //TODO
-        return new ArticleDto();
+        return mapper.map(article);
+
     }
 
     public ArticleDto create(ArticleDto articleDto) {
