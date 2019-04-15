@@ -19,18 +19,22 @@ public class ArticleController {
 
     @Autowired
     public ArticleController(ArticleService articleService) {
+
+        System.out.println("-- Articlecontroller.java - ArticleController() Konstruktor");
         this.articleService = articleService;
     }
 
     @GetMapping()
     public List<ArticleDto> list() {
+        System.out.println("-- Articlecontroller.java - list() Methode");
         return articleService.list();
     }
 
     @GetMapping("/{id}")
     public ArticleDto details(@PathVariable Long id) {
 
-         return articleService.articleForId(id);
+        System.out.println("-- Articlecontroller.java - list() Methode");
+        return articleService.articleForId(id);
     }
 
     @PostMapping()

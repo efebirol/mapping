@@ -27,7 +27,9 @@ public class ArticleService {
     public List<ArticleDto> list() {
         final List<Article> articles = repository.all();
         //TODO
-        return new ArrayList<>();
+        System.out.println("--ArticleService.java - list()");
+        //return new ArrayList<>();
+        return mapper.map(articles);
     }
 
     public ArticleDto articleForId(Long id) {
