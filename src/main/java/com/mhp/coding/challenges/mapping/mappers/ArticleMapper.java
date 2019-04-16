@@ -18,21 +18,24 @@ public class ArticleMapper {
 
 
     public ArticleDto map(Article article) {
-        ModelMapper modelMapper = new ModelMapper();
-        ArticleDto myArticleDto = modelMapper.map(article, ArticleDto.class);
+        if (article != null) {
+            ModelMapper modelMapper = new ModelMapper();
+            ArticleDto myArticleDto = modelMapper.map(article, ArticleDto.class);
 
-        Set<ArticleBlockDto> articleDtoSet = new HashSet<ArticleBlockDto>();
-        for (ArticleBlock block : article.getBlocks()) {
-            ArticleBlockDto abd = new ArticleBlockDto();
+            Set<ArticleBlockDto> articleDtoSet = new HashSet<ArticleBlockDto>();
+            for (ArticleBlock block : article.getBlocks()) {
+                ArticleBlockDto abd = new ArticleBlockDto();
 
-            abd.setSortIndex(block.getSortIndex());
+                abd.setSortIndex(block.getSortIndex());
 
-            articleDtoSet.add(abd);
+                articleDtoSet.add(abd);
+            }
+            sortBlock(articleDtoSet);
+            myArticleDto.setBlocks(articleDtoSet);
+            return myArticleDto;
         }
-        sortBlock(articleDtoSet);
-        myArticleDto.setBlocks(articleDtoSet);
+        return null;
 
-        return myArticleDto;
     }
 
     //fuer die List<Article>

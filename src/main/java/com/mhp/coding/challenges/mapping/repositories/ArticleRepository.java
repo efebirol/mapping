@@ -38,7 +38,7 @@ public class ArticleRepository {
         result.setLastModifiedBy("Hans Müller");
         result.setLastModified(new Date());
         result.setBlocks(createBlocks(id));
-        return result;
+        return (id.equals(Long.parseLong("99"))) ? null : result;
     }
 
     private Set<ArticleBlock> createBlocks(Long articleId){
